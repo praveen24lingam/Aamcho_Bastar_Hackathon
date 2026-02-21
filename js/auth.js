@@ -474,6 +474,13 @@ async function initAuthUI() {
             out.textContent = 'Logout';
             navActions.appendChild(out);
             out.addEventListener('click', function(e) { e.preventDefault(); handleLogout(); });
+            
+            // Reveal any landing-page elements marked for logged-in users
+            document.querySelectorAll('[data-auth="logged-in"]').forEach(el => {
+                el.style.display = '';
+                el.classList.add('is-visible');
+                el.removeAttribute('aria-hidden');
+            });
         } else {
             const signIn = document.createElement('a');
             signIn.href = 'login.html';
@@ -485,6 +492,13 @@ async function initAuthUI() {
             signUp.className = 'btn btn-green auth-link';
             signUp.textContent = 'Sign Up';
             navActions.appendChild(signUp);
+            
+            // Hide any landing-page elements marked for logged-in users
+            document.querySelectorAll('[data-auth="logged-in"]').forEach(el => {
+                el.style.display = 'none';
+                el.classList.remove('is-visible');
+                el.setAttribute('aria-hidden', 'true');
+            });
         }
         return;
     }

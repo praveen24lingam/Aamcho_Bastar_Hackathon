@@ -1630,3 +1630,19 @@ body.landing-theme.auth-page .btn-primary:hover {
         font-size: 1.6rem;
     }
 }
+
+/* Authenticated landing mini-dashboard */
+.auth-section {
+    display: none;
+    padding: 60px 5%;
+    background: var(--white);
+}
+.auth-section.is-visible { display: block; }
+.auth-stats .auth-stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 8px 0 12px;
+    color: var(--text-dark);
+}
+.auth-section .feature-card { padding: 20px; border-radius: 12px; }
+.auth-section .learn-more { margin-top: 8px; display:inline-flex; }

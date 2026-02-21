@@ -189,6 +189,50 @@
         </div>
     </section>
 
+    <!-- Authenticated Features (visible only when logged in) -->
+    <section class="auth-section" id="authFeatures" data-auth="logged-in" aria-hidden="true" style="display:none;">
+        <div class="section-header">
+            <h2>Member Dashboard</h2>
+            <p>Quick access to your complaints, feedback and agent requests</p>
+        </div>
+        <div class="auth-stats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1200px;margin:0 auto;padding:0 20px;">
+            <div class="feature-card">
+                <div class="feature-icon feature-icon-orange"><i class="fas fa-exclamation-triangle"></i></div>
+                <h3>Total Complaints</h3>
+                <p class="auth-stat-value" id="authTotalComplaints">0</p>
+                <a href="dashboard.html#page-complaints" class="learn-more">View Complaints <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon feature-icon-orange"><i class="fas fa-star"></i></div>
+                <h3>Feedback Given</h3>
+                <p class="auth-stat-value" id="authTotalFeedback">0</p>
+                <a href="dashboard.html#page-feedback" class="learn-more">View Feedback <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon feature-icon-green"><i class="fas fa-user-friends"></i></div>
+                <h3>Agent Requests</h3>
+                <p class="auth-stat-value" id="authTotalAgentRequests">0</p>
+                <a href="dashboard.html#page-agent" class="learn-more">Connect Agent <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="activity-section" style="max-width:1200px;margin:28px auto;padding:0 20px;">
+            <h2 class="section-title">Recent Activity</h2>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:16px;">
+                <div class="feature-card">
+                    <h3 class="activity-title">Recent Complaints</h3>
+                    <p class="text-light">View or submit complaints from your account.</p>
+                    <a href="dashboard.html#page-complaints" class="learn-more">Open Complaints <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <h3 class="activity-title">Recent Feedback</h3>
+                    <p class="text-light">See your feedback history and responses.</p>
+                    <a href="dashboard.html#page-feedback" class="learn-more">Open Feedback <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 5. Ready to Explore: final CTA -->
     <section class="cta-banner" id="cta-banner">
         <div class="cta-banner-content">
