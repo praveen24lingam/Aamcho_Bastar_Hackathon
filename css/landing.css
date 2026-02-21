@@ -1646,3 +1646,44 @@ body.landing-theme.auth-page .btn-primary:hover {
 }
 .auth-section .feature-card { padding: 20px; border-radius: 12px; }
 .auth-section .learn-more { margin-top: 8px; display:inline-flex; }
+
+/* Profile dropdown similar to ChatGPT style */
+.nav-profile-btn {
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.06);
+    padding: 6px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.nav-profile-btn span { vertical-align: middle; }
+.nav-profile-dropdown {
+    --panel-bg: #111827; /* dark panel */
+    --panel-foreground: #f9fafb;
+    position: absolute;
+    z-index: 3200;
+    background: var(--panel-bg);
+    color: var(--panel-foreground);
+    border-radius: 12px;
+    min-width: 220px;
+    box-shadow: 0 20px 50px rgba(2,6,23,0.6);
+    overflow: hidden;
+}
+.nav-profile-dropdown .nav-profile-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    color: var(--panel-foreground);
+    text-decoration: none;
+    font-weight: 600;
+}
+.nav-profile-dropdown .nav-profile-item:hover { background: rgba(255,255,255,0.03); }
+.nav-profile-item-icon { width: 20px; display:inline-flex; align-items:center; justify-content:center; color: rgba(255,255,255,0.9); }
+.nav-profile-item-text { flex:1; }
+.nav-profile-dropdown .nav-profile-item + .nav-profile-item { border-top: 1px solid rgba(255,255,255,0.03); }
+
+/* Small avatar inside nav button */
+.nav-profile-btn .avatar-small { width:28px; height:28px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:700; background:#111827; color:#f9fafb; }
+
+/* Ensure dropdown styles don't clash on light navbar */
+.navbar .nav-profile-dropdown { right: 10px; top: 56px; }

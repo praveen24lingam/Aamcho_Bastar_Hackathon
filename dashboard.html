@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - ConnectHub</title>
+    <link rel="stylesheet" href="css/landing.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +12,6 @@
 </head>
 <body>
     <div class="dashboard-layout">
-        <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <h2 class="logo-text">ConnectHub</h2>
@@ -69,7 +69,6 @@
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="dashboard-main">
             <header class="dashboard-header">
                 <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
@@ -78,21 +77,21 @@
                     <span></span>
                 </button>
                 <div class="header-actions">
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                        <span class="sun-icon">☀️</span>
-                        <span class="moon-icon">🌙</span>
-                    </button>
-                    <div class="user-menu">
-                        <div class="user-avatar" id="userAvatar">
-                            <span id="userInitials">U</span>
+                        <a href="index.html" class="btn btn-outline-dark" style="margin-right:12px;">Home</a>
+                        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                            <span class="sun-icon">☀️</span>
+                            <span class="moon-icon">🌙</span>
+                        </button>
+                        <div class="user-menu">
+                            <div class="user-avatar" id="userAvatar">
+                                <span id="userInitials">U</span>
+                            </div>
+                            <span class="user-name" id="userName">User</span>
                         </div>
-                        <span class="user-name" id="userName">User</span>
                     </div>
-                </div>
             </header>
 
             <div class="dashboard-content">
-                <!-- Overview Page -->
                 <div class="page-content active" id="page-overview">
                     <div class="page-header">
                         <h1 class="page-title">Dashboard Overview</h1>
@@ -156,7 +155,6 @@
                     </div>
                 </div>
 
-                <!-- Complaints Page -->
                 <div class="page-content" id="page-complaints">
                     <div class="page-header">
                         <h1 class="page-title">Submit Complaint</h1>
@@ -199,7 +197,6 @@
                     </div>
                 </div>
 
-                <!-- Feedback Page -->
                 <div class="page-content" id="page-feedback">
                     <div class="page-header">
                         <h1 class="page-title">Give Feedback</h1>
@@ -231,7 +228,6 @@
                     </div>
                 </div>
 
-                <!-- Agent Connect Page -->
                 <div class="page-content" id="page-agent">
                     <div class="page-header">
                         <h1 class="page-title">Connect with Agent</h1>
@@ -266,10 +262,8 @@
         </main>
     </div>
 
-    <!-- Toast Container -->
     <div id="toastContainer" class="toast-container"></div>
 
-    <!-- Delete Confirmation Modal -->
     <div id="deleteModal" class="modal">
         <div class="modal-content glass-card">
             <h3 class="modal-title">Confirm Delete</h3>
@@ -286,5 +280,781 @@
     <script src="js/auth.js"></script>
     <script src="js/dashboard.js"></script>
     <script src="js/main.js"></script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Chalgunbe Bastar</title>
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Base Colors & Background - Bastar Theme */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif !important;
+            background-color: #fdfbf8 !important; /* Signature Bastar off-white background */
+            color: #333 !important;
+            line-height: 1.6;
+        }
+
+        /* Dashboard Layout */
+        .dashboard-layout {
+            display: flex !important;
+            height: 100vh !important;
+            overflow: hidden !important;
+            background-color: #fdfbf8 !important;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 260px !important;
+            background-color: #fff !important;
+            border-right: 1px solid #f2ebe4 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            transition: transform 0.3s ease !important;
+            z-index: 1000 !important;
+        }
+        .sidebar-header {
+            padding: 20px 25px !important;
+            border-bottom: 1px solid #f2ebe4 !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+        }
+        .logo-text {
+            margin: 0 !important;
+            font-size: 1.4rem !important;
+            font-weight: 700 !important;
+            text-decoration: none !important;
+        }
+        .logo-text span.text-green { color: #2e7d32 !important; }
+        .logo-text span.text-orange { color: #e87c35 !important; }
+        
+        .sidebar-close {
+            display: none !important;
+            background: none !important;
+            border: none !important;
+            font-size: 1.5rem !important;
+            color: #666 !important;
+            cursor: pointer !important;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar-nav {
+            flex: 1 !important;
+            padding: 20px 0 !important;
+            overflow-y: auto !important;
+        }
+        .nav-item {
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+            padding: 12px 25px !important;
+            color: #555 !important;
+            text-decoration: none !important;
+            font-weight: 500 !important;
+            font-size: 0.95rem !important;
+            border-left: 4px solid transparent !important;
+            transition: all 0.2s ease !important;
+            cursor: pointer !important;
+            background: transparent !important;
+            border-top: none !important;
+            border-right: none !important;
+            border-bottom: none !important;
+            width: 100% !important;
+            text-align: left !important;
+            font-family: inherit !important;
+        }
+        .nav-item:hover {
+            background-color: #fff9f5 !important;
+            color: #e87c35 !important;
+        }
+        .nav-item.active {
+            background-color: #fff0e6 !important; /* Light orange tint */
+            color: #e87c35 !important;
+            font-weight: 600 !important;
+            border-left-color: #e87c35 !important;
+        }
+        .nav-item svg, .nav-item i {
+            width: 20px !important;
+            text-align: center !important;
+            font-size: 1.1rem !important;
+        }
+        
+        .sidebar-footer {
+            padding: 20px 0 !important;
+            border-top: 1px solid #f2ebe4 !important;
+        }
+        .logout-btn {
+            color: #d32f2f !important;
+        }
+        .logout-btn:hover {
+            background-color: #fffcfc !important;
+            color: #b71c1c !important;
+        }
+
+        /* Main Content Area */
+        .dashboard-main {
+            flex: 1 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            overflow-y: auto !important;
+            background-color: #fdfbf8 !important;
+        }
+
+        /* Header */
+        .dashboard-header {
+            background-color: #fff !important;
+            height: 70px !important;
+            min-height: 70px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 0 30px !important;
+            border-bottom: 1px solid #f2ebe4 !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02) !important;
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 99 !important;
+        }
+        .sidebar-toggle {
+            background: none !important;
+            border: none !important;
+            font-size: 1.2rem !important;
+            color: #444 !important;
+            cursor: pointer !important;
+            display: none !important;
+        }
+        .header-actions {
+            display: flex !important;
+            align-items: center !important;
+            gap: 20px !important;
+            margin-left: auto !important;
+        }
+        .btn-outline-dark {
+            text-decoration: none !important;
+            color: #444 !important;
+            border: 1px solid #e0e0e0 !important;
+            padding: 8px 16px !important;
+            border-radius: 6px !important;
+            font-weight: 600 !important;
+            font-size: 0.9rem !important;
+            transition: all 0.2s !important;
+        }
+        .btn-outline-dark:hover {
+            border-color: #e87c35 !important;
+            color: #e87c35 !important;
+        }
+        .theme-toggle {
+            background: none !important;
+            border: none !important;
+            font-size: 1.2rem !important;
+            cursor: pointer !important;
+            color: #666 !important;
+        }
+        .user-menu {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+        }
+        .user-avatar {
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 50% !important;
+            background-color: #e87c35 !important;
+            color: white !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-weight: 700 !important;
+            font-size: 0.9rem !important;
+        }
+        .user-name {
+            font-weight: 600 !important;
+            color: #333 !important;
+            font-size: 0.9rem !important;
+        }
+
+        /* Content Container */
+        .dashboard-content {
+            padding: 40px !important;
+            max-width: 1200px !important;
+            margin: 0 auto !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        .page-content {
+            display: none; /* Handled by JS, but overriding styling */
+        }
+        .page-content.active {
+            display: block !important;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-header {
+            margin-bottom: 30px !important;
+        }
+        .page-title {
+            font-size: 2rem !important;
+            color: #222 !important;
+            margin: 0 0 5px 0 !important;
+            font-weight: 700 !important;
+        }
+        .page-subtitle {
+            color: #666 !important;
+            margin: 0 !important;
+            font-size: 0.95rem !important;
+        }
+
+        /* Themed Cards */
+        .glass-card {
+            background: #fff !important;
+            border: 1px solid #f2ebe4 !important;
+            border-radius: 12px !important;
+            padding: 30px !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02) !important;
+        }
+
+        /* Stats Grid (Overview Page) */
+        .stats-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+            gap: 25px !important;
+            margin-bottom: 40px !important;
+        }
+        .stat-card {
+            display: flex !important;
+            align-items: center !important;
+            gap: 20px !important;
+            padding: 25px !important;
+            transition: transform 0.2s !important;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05) !important;
+        }
+        .stat-icon {
+            width: 60px !important;
+            height: 60px !important;
+            border-radius: 12px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: #fff !important;
+        }
+        /* Themed Gradients for Stats */
+        .gradient-bg-1 { background: linear-gradient(135deg, #e87c35 0%, #d66a25 100%) !important; } /* Orange */
+        .gradient-bg-2 { background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%) !important; } /* Green */
+        .gradient-bg-3 { background: linear-gradient(135deg, #8a6347 0%, #6d4c35 100%) !important; } /* Brown/Earthy */
+
+        .stat-content {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        .stat-label {
+            margin: 0 0 5px 0 !important;
+            color: #666 !important;
+            font-size: 0.9rem !important;
+            font-weight: 500 !important;
+        }
+        .stat-value {
+            margin: 0 !important;
+            font-size: 1.8rem !important;
+            color: #222 !important;
+            font-weight: 700 !important;
+        }
+
+        /* Activity Section */
+        .section-title {
+            color: #2e7d32 !important;
+            font-weight: 600 !important;
+            font-size: 1.3rem !important;
+            margin: 0 0 20px 0 !important;
+        }
+        .activity-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+            gap: 30px !important;
+        }
+        .activity-title {
+            font-size: 1.1rem !important;
+            color: #e87c35 !important;
+            margin: 0 0 20px 0 !important;
+            padding-bottom: 10px !important;
+            border-bottom: 1px solid #f2ebe4 !important;
+        }
+        .items-list {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 15px !important;
+        }
+        /* Add some basic styling for list items inside JS generated content */
+        .activity-item {
+            padding: 15px !important;
+            border: 1px solid #f0f0f0 !important;
+            border-radius: 8px !important;
+            background: #fafafa !important;
+        }
+
+        /* Form Styling (For Complaints, Feedback, Agent pages) */
+        .form-container {
+            max-width: 700px !important;
+        }
+        .form-group {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+            margin-bottom: 20px !important;
+        }
+        .form-label {
+            font-size: 0.95rem !important;
+            font-weight: 600 !important;
+            color: #444 !important;
+        }
+        .form-input, .form-textarea {
+            width: 100% !important;
+            padding: 12px 15px !important;
+            border: 1px solid #e0e0e0 !important;
+            border-radius: 8px !important;
+            font-family: inherit !important;
+            font-size: 0.95rem !important;
+            color: #333 !important;
+            box-sizing: border-box !important;
+            transition: all 0.2s !important;
+            background: #fff !important;
+        }
+        .form-input:focus, .form-textarea:focus {
+            border-color: #e87c35 !important;
+            box-shadow: 0 0 0 3px rgba(232, 124, 53, 0.1) !important;
+            outline: none !important;
+        }
+        .form-textarea {
+            resize: vertical !important;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: #e87c35 !important;
+            color: #fff !important;
+            border: none !important;
+            padding: 12px 24px !important;
+            border-radius: 6px !important;
+            font-weight: 600 !important;
+            font-size: 0.95rem !important;
+            cursor: pointer !important;
+            transition: background 0.3s !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+        }
+        .btn-primary:hover {
+            background-color: #d66a25 !important;
+        }
+
+        /* Lists below forms */
+        .complaints-list, .feedback-list, .agent-requests-list {
+            margin-top: 50px !important;
+            background: #fff !important;
+            padding: 30px !important;
+            border-radius: 12px !important;
+            border: 1px solid #f2ebe4 !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02) !important;
+        }
+        .list-title {
+            color: #2e7d32 !important;
+            font-size: 1.2rem !important;
+            margin: 0 0 20px 0 !important;
+            padding-bottom: 10px !important;
+            border-bottom: 1px solid #f2ebe4 !important;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none !important; /* Managed by JS */
+            position: fixed !important;
+            top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important;
+            background: rgba(0,0,0,0.5) !important;
+            z-index: 10000 !important;
+            align-items: center !important;
+            justify-content: center !important;
+            backdrop-filter: blur(3px) !important;
+        }
+        .modal-content {
+            max-width: 400px !important;
+            width: 90% !important;
+            padding: 30px !important;
+            margin: 20px !important;
+        }
+        .modal-title {
+            color: #d32f2f !important;
+            margin: 0 0 10px 0 !important;
+            font-size: 1.3rem !important;
+        }
+        .modal-text {
+            color: #555 !important;
+            margin-bottom: 25px !important;
+            line-height: 1.5 !important;
+        }
+        .modal-actions {
+            display: flex !important;
+            justify-content: flex-end !important;
+            gap: 12px !important;
+        }
+        .btn-secondary {
+            background: #fff !important;
+            border: 1px solid #ccc !important;
+            color: #444 !important;
+            padding: 10px 20px !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+            font-weight: 600 !important;
+        }
+        .btn-danger {
+            background: #d32f2f !important;
+            border: none !important;
+            color: #fff !important;
+            padding: 10px 20px !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+            font-weight: 600 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .sidebar {
+                position: fixed !important;
+                height: 100% !important;
+                left: -260px !important; 
+            }
+            .sidebar.show { left: 0 !important; }
+            .sidebar-toggle { display: block !important; }
+            .sidebar-close { display: block !important; }
+            .dashboard-content { padding: 20px !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo-text">
+                    <span class="text-green">Ch</span><span class="text-orange">लगुंबे बस्तर</span>
+                </a>
+                <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="overview">
+                    <i class="fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="complaints">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Submit Complaint</span>
+                </a>
+                <a href="#" class="nav-item" data-page="feedback">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Give Feedback</span>
+                </a>
+                <a href="#" class="nav-item" data-page="agent">
+                    <i class="fas fa-headset"></i>
+                    <span>Connect Agent</span>
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profile Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="nav-item logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-header">
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-actions">
+                    <a href="index.html" class="btn-outline-dark">Home Page</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon" style="display:none;">🌙</span>
+                    </button>
+                    <div class="user-menu">
+                        <div class="user-avatar" id="userAvatar">
+                            <span id="userInitials">U</span>
+                        </div>
+                        <span class="user-name" id="userName">User</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                
+                <div class="page-content active" id="page-overview">
+                    <div class="page-header">
+                        <h1 class="page-title">Dashboard Overview</h1>
+                        <p class="page-subtitle">Welcome back! Here's what's happening with your activities.</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon gradient-bg-1">
+                                <i class="fas fa-file-alt" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div class="stat-content">
+                                <p class="stat-label">Total Complaints</p>
+                                <h3 class="stat-value" id="totalComplaints">0</h3>
+                            </div>
+                        </div>
+
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon gradient-bg-2">
+                                <i class="fas fa-comment-dots" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div class="stat-content">
+                                <p class="stat-label">Feedback Given</p>
+                                <h3 class="stat-value" id="totalFeedback">0</h3>
+                            </div>
+                        </div>
+
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon gradient-bg-3">
+                                <i class="fas fa-headset" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div class="stat-content">
+                                <p class="stat-label">Agent Requests</p>
+                                <h3 class="stat-value" id="totalAgentRequests">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="activity-section">
+                        <h2 class="section-title">Recent Activity</h2>
+                        <div class="activity-grid">
+                            <div class="activity-card glass-card">
+                                <h3 class="activity-title"><i class="fas fa-clock"></i> Recent Complaints</h3>
+                                <div id="recentComplaints" class="items-list">
+                                    <p style="color:#888; font-size:0.9rem;">No recent complaints found.</p>
+                                </div>
+                            </div>
+                            <div class="activity-card glass-card">
+                                <h3 class="activity-title"><i class="fas fa-history"></i> Recent Feedback</h3>
+                                <div id="recentFeedback" class="items-list">
+                                    <p style="color:#888; font-size:0.9rem;">No recent feedback found.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-content" id="page-complaints">
+                    <div class="page-header">
+                        <h1 class="page-title">Submit Complaint</h1>
+                        <p class="page-subtitle">Let us know about your concerns regarding any services</p>
+                    </div>
+
+                    <div class="form-container">
+                        <form id="complaintForm" class="dashboard-form glass-card">
+                            <div class="form-group">
+                                <label for="complaintTitle" class="form-label">Complaint Title</label>
+                                <input type="text" id="complaintTitle" class="form-input" placeholder="Brief title of your complaint" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complaintDescription" class="form-label">Description</label>
+                                <textarea id="complaintDescription" class="form-textarea" rows="6" placeholder="Describe your complaint in detail..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary" id="submitComplaintBtn">
+                                <i class="fas fa-paper-plane"></i> Submit Complaint
+                            </button>
+                        </form>
+
+                        <div class="complaints-list">
+                            <h3 class="list-title">Your Complaints History</h3>
+                            <div id="complaintsList" class="items-list">
+                                <p style="color:#888; font-size:0.9rem;">No complaints submitted yet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-content" id="page-feedback">
+                    <div class="page-header">
+                        <h1 class="page-title">Give Feedback</h1>
+                        <p class="page-subtitle">Share your experience with Bastar Tourism</p>
+                    </div>
+
+                    <div class="form-container">
+                        <form id="feedbackForm" class="dashboard-form glass-card">
+                            <div class="form-group">
+                                <label for="feedbackMessage" class="form-label">Your Feedback</label>
+                                <textarea id="feedbackMessage" class="form-textarea" rows="6" placeholder="Tell us what you think..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary" id="submitFeedbackBtn">
+                                <i class="fas fa-star"></i> Submit Feedback
+                            </button>
+                        </form>
+
+                        <div class="feedback-list">
+                            <h3 class="list-title">Your Feedback History</h3>
+                            <div id="feedbackList" class="items-list">
+                                <p style="color:#888; font-size:0.9rem;">No feedback submitted yet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-content" id="page-agent">
+                    <div class="page-header">
+                        <h1 class="page-title">Connect with Agent</h1>
+                        <p class="page-subtitle">Request to connect with our verified local guides & agents</p>
+                    </div>
+
+                    <div class="form-container">
+                        <form id="agentForm" class="dashboard-form glass-card">
+                            <div class="form-group">
+                                <label for="agentMessage" class="form-label">Your Message / Requirement</label>
+                                <textarea id="agentMessage" class="form-textarea" rows="6" placeholder="Tell us how we can help you with your trip..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary" id="submitAgentBtn">
+                                <i class="fas fa-envelope"></i> Send Request
+                            </button>
+                        </form>
+
+                        <div class="agent-requests-list">
+                            <h3 class="list-title">Your Agent Requests</h3>
+                            <div id="agentRequestsList" class="items-list">
+                                <p style="color:#888; font-size:0.9rem;">No requests submitted yet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content glass-card">
+            <h3 class="modal-title">Confirm Delete</h3>
+            <p class="modal-text">Are you sure you want to delete this item? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelDelete">Cancel</button>
+                <button class="btn-danger" id="confirmDelete">Delete Item</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"
+            onerror="console.error('CDN 1 failed, trying fallback...'); this.onerror=null; this.src='https://unpkg.com/@supabase/supabase-js@2.39.3/dist/umd/supabase.js';"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar Toggle Logic
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('sidebarToggle');
+            const closeBtn = document.getElementById('sidebarClose');
+
+            if(toggleBtn) {
+                toggleBtn.addEventListener('click', function() {
+                    sidebar.classList.add('show');
+                });
+            }
+            if(closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    sidebar.classList.remove('show');
+                });
+            }
+
+            // Tab Switching Logic
+            const navItems = document.querySelectorAll('.nav-item[data-page]');
+            const pages = document.querySelectorAll('.page-content');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and pages
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                        page.style.display = 'none';
+                    });
+
+                    // Add active class to clicked link
+                    this.classList.add('active');
+
+                    // Show corresponding page
+                    const targetPageId = 'page-' + this.getAttribute('data-page');
+                    const targetPage = document.getElementById(targetPageId);
+                    if (targetPage) {
+                        targetPage.classList.add('active');
+                        targetPage.style.display = 'block';
+                    }
+
+                    // On mobile, close sidebar after clicking a link
+                    if(window.innerWidth <= 900) {
+                        sidebar.classList.remove('show');
+                    }
+                });
+            });
+
+            // Modal simple close logic fallback
+            document.getElementById('cancelDelete').addEventListener('click', function() {
+                document.getElementById('deleteModal').style.display = 'none';
+            });
+        });
+    </script>
 </body>
 </html>

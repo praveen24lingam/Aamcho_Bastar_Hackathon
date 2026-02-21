@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Dashboard - Chalgunbe Bastar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <main class="dashboard-main">
+            <header class="dashboard-header">
+                <h1>Agent Dashboard</h1>
+            </header>
+            <div class="dashboard-content">
+                <p>This area is for agents only. If you are not an agent you will be redirected to the homepage.</p>
+                <div id="agentContent" style="max-width:1200px;margin:20px auto;padding:0 20px;">
+                    <!-- Agent features: manage bookings, add package, respond to inquiries -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js" onerror="this.onerror=null;this.src='https://unpkg.com/@supabase/supabase-js@2.39.3/dist/umd/supabase.js';"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function(){
+            // Protect the page for agent role
+            const ok = await authFunctions.requireAgentRole();
+            if (!ok) return;
+            // Load agent-specific content: bookings and inquiries
+            const supabase = window.supabaseClient;
+            if (!supabase) return;
+            try {
+                const { data: inquiries } = await supabase.from('inquiries').select('*').order('created_at', { ascending: false });
+                const el = document.getElementById('agentContent');
+                if (!inquiries || inquiries.length === 0) {
+                    el.innerHTML = '<p>No inquiries yet.</p>';
+                    return;
+                }
+                el.innerHTML = '<h3>Platform Inquiries</h3>' + inquiries.map(i => `\n                    <div style="padding:12px;border:1px solid #eee;border-radius:8px;margin-bottom:8px;background:#fff;">\n                        <strong>${i.name || 'User'}</strong> <small style="color:#666">(${i.phone || i.user_id || 'guest'})</small>\n                        <p style="margin:6px 0;">${i.message}</p>\n                        <p style="font-size:0.85rem;color:#666">Status: ${i.status}</p>\n                    </div>\n                `).join('');
+            } catch (err) {
+                console.error(err);
+            }
+        });
+    </script>
+</body>
+</html>

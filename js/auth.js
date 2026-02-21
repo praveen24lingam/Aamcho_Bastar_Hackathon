@@ -186,7 +186,7 @@ async function handleSignUp(event) {
     const confirmPassword = form.querySelector('#confirmPassword')?.value || '';
     const termsCheckbox = form.querySelector('#agreeTerms') || form.querySelector('#terms');
     const termsAccepted = termsCheckbox ? termsCheckbox.checked : false;
-    const userType = form.querySelector('input[name="userType"]:checked')?.value || 'user';
+        const userType = form.querySelector('input[name="userType"]:checked')?.value || 'user'; // userType is determined here
     
     // Validation
     if (!fullName || !email || !password || !confirmPassword) {
@@ -233,7 +233,7 @@ async function handleSignUp(event) {
             options: {
                 data: {
                     full_name: fullName,
-                    user_type: userType
+                        role: userType // store role in user metadata (user or agent)
                 }
             }
         });
@@ -306,10 +306,10 @@ async function handleLogin(event) {
         
         showToast('Login successful! Redirecting...', 'success');
         
-        // Redirect to dashboard
-        setTimeout(() => {
-            window.location.href = 'dashboard.html';
-        }, 1000);
+            // Redirect to home (always) after login
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1000);
         
     } catch (error) {
         console.error('Login error:', error);
@@ -418,6 +418,32 @@ async function getAuthStatus() {
     }
 }
 
+    // Helper: return role string for a user object (default 'user')
+    function getUserRole(user) {
+        if (!user) return null;
+        // Prefer explicit metadata.role
+        if (user.user_metadata && user.user_metadata.role) return user.user_metadata.role;
+        if (user.user_metadata && user.user_metadata.user_type) return user.user_metadata.user_type;
+        return 'user';
+    }
+
+    // Middleware-like helper for agent-only pages
+    async function requireAgentRole() {
+        const auth = await getAuthStatus();
+        if (!auth.isAuthenticated) {
+            showToast('Please login to access this page', 'error');
+            window.location.href = '/';
+            return false;
+        }
+        const role = getUserRole(auth.user);
+        if (role !== 'agent') {
+            showToast('Access denied: Agent role required', 'error');
+            window.location.href = '/';
+            return false;
+        }
+        return true;
+    }
+
 // Protect route - redirect to login if not authenticated.
 // Call ONLY from dashboard and profile pages (never on index or public pages).
 async function requireAuth() {
@@ -435,7 +461,8 @@ async function redirectIfLoggedIn() {
     const loggedIn = await isLoggedIn();
     
     if (loggedIn) {
-        window.location.href = 'dashboard.html';
+        // Always redirect to homepage after login
+        window.location.href = '/';
         return true;
     }
     
@@ -457,49 +484,79 @@ async function initAuthUI() {
     const navActions = navbar.querySelector('.nav-actions');
 
     if (navActions) {
-        // Landing page: .nav-actions with Sign In / Sign Up links
-        const authLinks = navActions.querySelectorAll('.auth-link, a[href="login.html"], a[href="signup.html"], a[href="dashboard.html"], .logout-link');
-        authLinks.forEach(el => el.remove());
-
+        // Landing page: keep overall navbar layout, but replace Sign In / Sign Up
+        // with a compact profile button when the user is authenticated.
         if (authStatus.isAuthenticated) {
-            const dash = document.createElement('a');
-            dash.href = 'dashboard.html';
-            dash.className = 'sign-in auth-link';
-            dash.textContent = 'Dashboard';
-            navActions.appendChild(dash);
-            const out = document.createElement('a');
-            out.href = '#';
-            out.className = 'btn btn-green auth-link logout-link';
-            out.id = 'navLogoutBtn';
-            out.textContent = 'Logout';
-            navActions.appendChild(out);
-            out.addEventListener('click', function(e) { e.preventDefault(); handleLogout(); });
-            
-            // Reveal any landing-page elements marked for logged-in users
+            // reveal auth-only content
             document.querySelectorAll('[data-auth="logged-in"]').forEach(el => {
                 el.style.display = '';
                 el.classList.add('is-visible');
                 el.removeAttribute('aria-hidden');
             });
+
+            // remove existing auth links (Sign In / Sign Up) if present
+            navActions.querySelectorAll('.auth-link, a[href="login.html"], a[href="signup.html"]').forEach(el => el.remove());
+
+            // build a compact profile button (keeps layout space similar)
+            const user = authStatus.user;
+            const role = getUserRole(user) || 'user';
+            const initials = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name.split(' ').map(n=>n[0]).slice(0,2).join('') : (user.email ? user.email[0].toUpperCase() : 'U');
+
+            const profileBtn = document.createElement('button');
+            profileBtn.className = 'nav-profile-btn btn';
+            profileBtn.type = 'button';
+            profileBtn.style.display = 'inline-flex';
+            profileBtn.style.alignItems = 'center';
+            profileBtn.style.gap = '8px';
+            profileBtn.innerHTML = `<span class="avatar-small">${initials}</span><span style="font-weight:600">${user.user_metadata?.full_name || 'Account'}</span>`;
+
+            const dropdown = document.createElement('div');
+            dropdown.className = 'nav-profile-dropdown';
+            dropdown.style.position = 'absolute';
+            dropdown.style.right = '20px';
+            dropdown.style.top = '64px';
+            // Use CSS (.nav-profile-dropdown) to control background, shadow,
+            // border radius, padding and sizing so themes (dark/light) work.
+            dropdown.style.display = 'none';
+
+            function addItem(text, href, iconHtml, onClick) {
+                const a = document.createElement('a');
+                a.href = href || '#';
+                a.className = 'nav-profile-item';
+                a.innerHTML = `
+                    <span class="nav-profile-item-icon">${iconHtml || ''}</span>
+                    <span class="nav-profile-item-text">${text}</span>
+                `;
+                if (onClick) a.addEventListener('click', onClick);
+                dropdown.appendChild(a);
+            }
+
+            addItem('My Reviews','profile.html#reviews','<i class="fas fa-star"></i>');
+            addItem('Wishlist','profile.html#wishlist','<i class="fas fa-heart"></i>');
+            if (role === 'agent') addItem('Agent Dashboard','agent-dashboard.html','<i class="fas fa-user-tie"></i>');
+            addItem('Logout','#','<i class="fas fa-sign-out-alt"></i>', function(e){ e.preventDefault(); handleLogout(); });
+
+            profileBtn.addEventListener('click', function(e){
+                e.stopPropagation();
+                dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+            });
+            document.addEventListener('click', function(){ dropdown.style.display = 'none'; });
+
+            // append profile button and dropdown (wrap to keep structure)
+            const wrap = document.createElement('div');
+            wrap.style.position = 'relative';
+            wrap.appendChild(profileBtn);
+            wrap.appendChild(dropdown);
+            navActions.appendChild(wrap);
         } else {
-            const signIn = document.createElement('a');
-            signIn.href = 'login.html';
-            signIn.className = 'sign-in auth-link';
-            signIn.textContent = 'Sign In';
-            navActions.appendChild(signIn);
-            const signUp = document.createElement('a');
-            signUp.href = 'signup.html';
-            signUp.className = 'btn btn-green auth-link';
-            signUp.textContent = 'Sign Up';
-            navActions.appendChild(signUp);
-            
-            // Hide any landing-page elements marked for logged-in users
+            // hide auth-only elements for guests
             document.querySelectorAll('[data-auth="logged-in"]').forEach(el => {
                 el.style.display = 'none';
                 el.classList.remove('is-visible');
                 el.setAttribute('aria-hidden', 'true');
             });
         }
+
         return;
     }
 
@@ -513,16 +570,28 @@ async function initAuthUI() {
     });
 
     if (authStatus.isAuthenticated) {
-        const dashboardLi = document.createElement('li');
-        dashboardLi.innerHTML = '<a href="dashboard.html" class="btn-secondary-nav">Dashboard</a>';
-        navMenu.appendChild(dashboardLi);
-        const logoutLi = document.createElement('li');
-        logoutLi.innerHTML = '<a href="#" class="btn-primary-nav logout-link" id="navLogoutBtn">Logout</a>';
-        navMenu.appendChild(logoutLi);
-        const logoutLink = document.getElementById('navLogoutBtn');
-        if (logoutLink) {
-            logoutLink.addEventListener('click', function(e) { e.preventDefault(); handleLogout(); });
-        }
+        const user = authStatus.user;
+        const role = getUserRole(user) || 'user';
+        const initials = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name.split(' ').map(n=>n[0]).slice(0,2).join('') : (user.email ? user.email[0].toUpperCase() : 'U');
+
+        const profileLi = document.createElement('li');
+        profileLi.className = 'nav-item nav-profile-menu';
+        profileLi.style.position = 'relative';
+        profileLi.innerHTML = `
+            <button class="nav-profile-btn btn" type="button"><span class="avatar-small">${initials}</span> ${user.user_metadata?.full_name || 'Account'}</button>
+            <div class="nav-profile-dropdown" style="display:none;">
+            </div>
+        `;
+        navMenu.appendChild(profileLi);
+        const menu = profileLi.querySelector('.nav-profile-dropdown');
+        function addMenuItem(text, href, iconHtml, onClick){ const a=document.createElement('a'); a.href=href||'#'; a.className='nav-profile-item'; a.innerHTML=`<span class="nav-profile-item-icon">${iconHtml||''}</span><span class="nav-profile-item-text">${text}</span>`; if(onClick) a.addEventListener('click', onClick); menu.appendChild(a); }
+        addMenuItem('My Reviews','profile.html#reviews','<i class="fas fa-star"></i>');
+        addMenuItem('Wishlist','profile.html#wishlist','<i class="fas fa-heart"></i>');
+        if(role==='agent') addMenuItem('Agent Dashboard','agent-dashboard.html','<i class="fas fa-user-tie"></i>');
+        addMenuItem('Logout','#','<i class="fas fa-sign-out-alt"></i>', function(e){ e.preventDefault(); handleLogout(); });
+        const btn = profileLi.querySelector('.nav-profile-btn');
+        btn.addEventListener('click', function(e){ e.stopPropagation(); menu.style.display = menu.style.display==='none'?'block':'none'; });
+        document.addEventListener('click', function(){ if(menu) menu.style.display='none'; });
     } else {
         const loginLi = document.createElement('li');
         loginLi.innerHTML = '<a href="login.html" class="btn-secondary-nav">Login</a>';
@@ -688,6 +757,8 @@ window.authFunctions = {
     // Route protection
     requireAuth,
     requireAuthForAction,
+    requireAgentRole,
+    getUserRole,
     
     // UI functions
     initAuthUI,
