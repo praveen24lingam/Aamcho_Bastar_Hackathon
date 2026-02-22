@@ -6,7 +6,7 @@
     <title>Festivals - Chalgunbe Bastar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-   
+    
     <style>
         body {
             margin: 0;
@@ -15,7 +15,6 @@
             color: #333;
             line-height: 1.6;
         }
-
 
         .navbar {
             display: flex;
@@ -35,7 +34,7 @@
         }
         .text-green { color: #2e7d32; }
         .text-orange { color: #e87c35; }
-       
+        
         .nav-links {
             list-style: none;
             display: flex;
@@ -60,7 +59,7 @@
             background-color: #fff0e6;
             color: #e87c35;
         }
-       
+        
         .nav-actions {
             display: flex;
             align-items: center;
@@ -82,7 +81,6 @@
             border-radius: 6px;
         }
 
-
         .festivals-hero {
             background: linear-gradient(90deg, #d2e0d5 0%, #f9f1eb 50%, #f6e3d5 100%);
             padding: 60px 20px;
@@ -100,13 +98,12 @@
             margin: 0;
         }
 
-
         .festivals-container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 50px 20px;
         }
-       
+        
         .festivals-header {
             text-align: center;
             margin-bottom: 40px;
@@ -129,7 +126,6 @@
             margin: 0 auto;
         }
 
-
         .festivals-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -137,8 +133,6 @@
             margin-bottom: 50px;
         }
 
-
-       
         .festival-card {
             background: #fff;
             border-radius: 12px;
@@ -153,7 +147,6 @@
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
-
 
         .card-image {
             height: 200px;
@@ -187,7 +180,6 @@
         .bg-blue-grey { background-color: #546e7a; }
         .bg-dark { background-color: #212121; }
 
-
         .card-title-overlay {
             position: absolute;
             bottom: 0;
@@ -206,7 +198,6 @@
             font-size: 0.85rem;
             color: #ddd;
         }
-
 
         .card-body {
             padding: 20px;
@@ -233,7 +224,6 @@
             margin: 15px 0;
             line-height: 1.5;
         }
-
 
         .highlights-label {
             font-size: 0.85rem;
@@ -262,13 +252,19 @@
             background-color: #a67c52;
         }
 
-
         .card-actions {
             margin-top: auto;
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
+        
+        /* Fixed CSS for A tags masquerading as buttons */
+        .btn-outline, .btn-solid-orange, .btn-solid-brown {
+            text-decoration: none; /* Add this so links don't have underline */
+            box-sizing: border-box; /* Maintain layout */
+        }
+        
         .btn-outline {
             background: transparent;
             border: 1px solid #e0e0e0;
@@ -297,7 +293,7 @@
             cursor: pointer;
             font-weight: 500;
             font-size: 0.9rem;
-            transition: background 0.2s;
+            transition: background-color 0.2s;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -324,7 +320,6 @@
         .btn-solid-brown:hover {
             background-color: #714e36;
         }
-
 
         .cta-section {
             background-color: #fff9f5;
@@ -373,7 +368,6 @@
         }
         .cta-btn-secondary:hover { border-color: #888; color: #222; }
 
-
         .site-footer {
             background-color: #222;
             color: #fff;
@@ -390,7 +384,6 @@
         .footer-logo .text-orange { color: #e87c35; }
         .site-footer p { margin: 5px 0; color: #aaa; }
         .site-footer .copyright { font-size: 0.85rem; margin-top: 15px; }
-
 
         @media (max-width: 768px) {
             .navbar { padding: 15px 20px; }
@@ -422,13 +415,11 @@
         </div>
     </nav>
 
-
     <main>
         <section class="festivals-hero">
             <h1>Bastar Festivals</h1>
             <p>Experience the vibrant culture and traditions of tribal Bastar</p>
         </section>
-
 
         <section class="festivals-container">
             <div class="festivals-header">
@@ -437,9 +428,8 @@
                 <p>Immerse yourself in the vibrant cultural celebrations that define the spirit of Bastar. From ancient tribal rituals to modern cultural festivals, experience the soul of Chhattisgarh.</p>
             </div>
 
-
             <div class="festivals-grid">
-               
+                
                 <div class="festival-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80');">
                         <span class="badge-left bg-orange">Major Festival</span>
@@ -454,7 +444,7 @@
                         <div class="info-row"><i class="fas fa-map-marker-alt"></i> Jagdalpur</div>
                         <div class="info-row"><i class="fas fa-user-friends"></i> ₹499/person</div>
                         <p class="card-desc">World's longest Dussehra celebration with unique tribal traditions</p>
-                       
+                        
                         <div class="highlights-label"><i class="fas fa-music"></i> Highlights</div>
                         <div class="tags-container">
                             <span class="tag">Tribal rituals</span>
@@ -462,14 +452,13 @@
                             <span class="tag">Royal processions</span>
                             <span class="tag tag-more">+1 more</span>
                         </div>
-                       
+                        
                         <div class="card-actions">
-                            <button class="btn-outline"><i class="far fa-eye"></i> View Details</button>
-                            <button class="btn-solid-orange"><i class="fas fa-user-plus"></i> Register to Join</button>
+                            <a href="festival-details.html" class="btn-outline"><i class="far fa-eye"></i> View Details</a>
+                            <a href="contact.html" class="btn-solid-orange"><i class="fas fa-user-plus"></i> Register to Join</a>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="festival-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=80');">
@@ -485,7 +474,7 @@
                         <div class="info-row"><i class="fas fa-map-marker-alt"></i> Various Villages</div>
                         <div class="info-row"><i class="fas fa-user-friends"></i> ₹299/person</div>
                         <p class="card-desc">Traditional tribal fair celebrating harvest and community bonding</p>
-                       
+                        
                         <div class="highlights-label"><i class="fas fa-music"></i> Highlights</div>
                         <div class="tags-container">
                             <span class="tag">Local crafts</span>
@@ -493,14 +482,13 @@
                             <span class="tag">Folk music</span>
                             <span class="tag tag-more">+1 more</span>
                         </div>
-                       
+                        
                         <div class="card-actions">
-                            <button class="btn-outline"><i class="far fa-eye"></i> View Details</button>
-                            <button class="btn-solid-brown"><i class="far fa-bell"></i> Notify When Open</button>
+                            <a href="festival-details.html" class="btn-outline"><i class="far fa-eye"></i> View Details</a>
+                            <a href="contact.html" class="btn-solid-brown"><i class="far fa-bell"></i> Notify When Open</a>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="festival-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1603048297172-c92544798d5e?w=600&q=80');">
@@ -516,7 +504,7 @@
                         <div class="info-row"><i class="fas fa-map-marker-alt"></i> Gond Villages</div>
                         <div class="info-row"><i class="fas fa-user-friends"></i> ₹199/person</div>
                         <p class="card-desc">Harvest festival of Gond tribe with traditional rituals</p>
-                       
+                        
                         <div class="highlights-label"><i class="fas fa-music"></i> Highlights</div>
                         <div class="tags-container">
                             <span class="tag">Harvest celebration</span>
@@ -524,14 +512,13 @@
                             <span class="tag">Sacred rituals</span>
                             <span class="tag tag-more">+1 more</span>
                         </div>
-                       
+                        
                         <div class="card-actions">
-                            <button class="btn-outline"><i class="far fa-eye"></i> View Details</button>
-                            <button class="btn-solid-brown"><i class="far fa-bell"></i> Notify When Open</button>
+                            <a href="festival-details.html" class="btn-outline"><i class="far fa-eye"></i> View Details</a>
+                            <a href="contact.html" class="btn-solid-brown"><i class="far fa-bell"></i> Notify When Open</a>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="festival-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1583089892943-e02e5ee61623?w=600&q=80');">
@@ -547,7 +534,7 @@
                         <div class="info-row"><i class="fas fa-map-marker-alt"></i> Dantewada</div>
                         <div class="info-row"><i class="fas fa-user-friends"></i> ₹200/person</div>
                         <p class="card-desc">Spring festival celebrating love, life, and tribal unity</p>
-                       
+                        
                         <div class="highlights-label"><i class="fas fa-music"></i> Highlights</div>
                         <div class="tags-container">
                             <span class="tag">Spring celebration</span>
@@ -555,14 +542,13 @@
                             <span class="tag">Traditional games</span>
                             <span class="tag tag-more">+1 more</span>
                         </div>
-                       
+                        
                         <div class="card-actions">
-                            <button class="btn-outline"><i class="far fa-eye"></i> View Details</button>
-                            <button class="btn-solid-orange"><i class="fas fa-user-plus"></i> Register to Join</button>
+                            <a href="festival-details.html" class="btn-outline"><i class="far fa-eye"></i> View Details</a>
+                            <a href="contact.html" class="btn-solid-orange"><i class="fas fa-user-plus"></i> Register to Join</a>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="festival-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&q=80');">
@@ -578,7 +564,7 @@
                         <div class="info-row"><i class="fas fa-map-marker-alt"></i> Narayanpur</div>
                         <div class="info-row"><i class="fas fa-user-friends"></i> ₹450/person</div>
                         <p class="card-desc">Cultural extravaganza showcasing tribal art, music, and dance</p>
-                       
+                        
                         <div class="highlights-label"><i class="fas fa-music"></i> Highlights</div>
                         <div class="tags-container">
                             <span class="tag">Art exhibitions</span>
@@ -586,14 +572,13 @@
                             <span class="tag">Dance performances</span>
                             <span class="tag tag-more">+1 more</span>
                         </div>
-                       
+                        
                         <div class="card-actions">
-                            <button class="btn-outline"><i class="far fa-eye"></i> View Details</button>
-                            <button class="btn-solid-orange"><i class="fas fa-user-plus"></i> Register to Join</button>
+                            <a href="festival-details.html" class="btn-outline"><i class="far fa-eye"></i> View Details</a>
+                            <a href="contact.html" class="btn-solid-orange"><i class="fas fa-user-plus"></i> Register to Join</a>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="festival-card">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1542614471-001ccf2bb458?w=600&q=80');">
@@ -609,7 +594,7 @@
                         <div class="info-row"><i class="fas fa-map-marker-alt"></i> Raigarh</div>
                         <div class="info-row"><i class="fas fa-user-friends"></i> ₹750/person</div>
                         <p class="card-desc">Classical music and dance festival honoring cultural heritage</p>
-                       
+                        
                         <div class="highlights-label"><i class="fas fa-music"></i> Highlights</div>
                         <div class="tags-container">
                             <span class="tag">Classical performances</span>
@@ -617,31 +602,17 @@
                             <span class="tag">Cultural workshops</span>
                             <span class="tag tag-more">+1 more</span>
                         </div>
-                       
+                        
                         <div class="card-actions">
-                            <button class="btn-outline"><i class="far fa-eye"></i> View Details</button>
-                            <button class="btn-solid-brown"><i class="far fa-bell"></i> Notify When Open</button>
+                            <a href="festival-details.html" class="btn-outline"><i class="far fa-eye"></i> View Details</a>
+                            <a href="contact.html" class="btn-solid-brown"><i class="far fa-bell"></i> Notify When Open</a>
                         </div>
                     </div>
                 </div>
 
-
             </div>
-
-
-            <div class="cta-section">
-                <h3>Don't Miss Any Celebration</h3>
-                <p>Subscribe to our festival calendar and get notified about upcoming cultural events.</p>
-                <div class="cta-buttons">
-                    <button class="cta-btn-primary">Subscribe to Calendar</button>
-                    <button class="cta-btn-secondary">Download Festival Guide</button>
-                </div>
-            </div>
-
-
         </section>
     </main>
-
 
     <footer class="site-footer">
         <div class="footer-logo"><span class="text-white">Ch</span><span class="text-orange">लगुंबे बस्तर</span></div>
@@ -649,7 +620,5 @@
         <p class="copyright">© 2024 ChalgunbeBastar.com</p>
     </footer>
 
-
 </body>
 </html>
-
