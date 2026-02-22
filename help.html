@@ -556,14 +556,13 @@
                 header.addEventListener('click', function() {
                     const item = this.parentElement;
                     
-                    // Close all other open items (optional, remove this block if you want multiple to open at once)
+                  
                     document.querySelectorAll('.faq-item').forEach(otherItem => {
                         if (otherItem !== item) {
                             otherItem.classList.remove('active');
                         }
                     });
 
-                    // Toggle current item
                     item.classList.toggle('active');
                 });
             });
