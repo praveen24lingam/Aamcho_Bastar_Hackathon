@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chalgunbe Bastar - Booking System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-orange: #e87c35;
+            --primary-orange-hover: #d66a2a;
+            --bg-light: #fbfbfb;
+            --text-dark: #333333;
+            --text-muted: #666666;
+            --border-color: #eeeeee;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10  0%;
+            background: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(2px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+   
+        .modal-card {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideUp 0.3s ease-out;
+            max-height: 95vh;
+            overflow-y: auto;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: #999;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        .modal-header {
+            padding: 25px 30px 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-header i {
+            color: var(--primary-orange);
+            font-size: 1.2rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* --- Form Styling --- */
+        form {
+            padding: 10px 30px 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-row.tri-col {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        input, textarea {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--bg-light);
+            font-size: 0.95rem;
+            width: 100%;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary-orange);
+        }
+
+        textarea {
+            height: 80px;
+            resize: none;
+        }
+
+        /* --- Booking Summary Box --- */
+        .booking-summary {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .summary-title {
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .summary-item .val {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .fare-highlight {
+            color: var(--primary-orange) !important;
+            font-weight: 600 !important;
+        }
+
+        .total-row {
+            border-top: 1px solid #ddd;
+            margin-top: 12px;
+            padding-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .total-price {
+            color: var(--primary-orange);
+        }
+
+        /* --- Actions --- */
+        .modal-actions {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn-confirm {
+            background: var(--primary-orange);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .btn-pay {
+            background: white;
+            color: var(--text-dark);
+            border: 1px solid #ddd;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .btn-confirm:hover { background: var(--primary-orange-hover); }
+
+        @media (max-width: 600px) {
+            .form-row, .form-row.tri-col {
+                grid-template-columns: 1fr;
+            }
+            .modal-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+
+
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-card">
+            <button class="close-btn" id="closeModalBtn" onclick="window.location.href='transport.html'">&times;</button>
+            
+            <div class="modal-header">
+                <i class="fas fa-car-side"></i>
+                <h2>Book Jeep/SUV</h2>
+            </div>
+
+            <form id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="+91 2299517535" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Pickup Location</label>
+                        <input type="text" placeholder="Enter pickup address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Destination</label>
+                        <input type="text" placeholder="Enter destination" required>
+                    </div>
+                </div>
+
+                <div class="form-row tri-col">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Time</label>
+                        <input type="time" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Passengers</label>
+                        <input type="number" value="1" min="1" max="7" required>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label>Special Requests</label>
+                    <textarea placeholder="Any special requirements or requests..."></textarea>
+                </div>
+
+                <div class="booking-summary">
+                    <span class="summary-title">Booking Summary</span>
+                    <div class="summary-item">
+                        <span>Vehicle:</span>
+                        <span class="val">Jeep/SUV</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Capacity:</span>
+                        <span class="val">6-7 passengers</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Fare Range:</span>
+                        <span class="val fare-highlight">₹18-25 per km</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Estimated Total:</span>
+                        <span class="total-price">₹500-800</span>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="submit" class="btn-confirm" onclick="window.location.href='transport.html'">
+                        <i class="far fa-check-circle"></i> Confirm Booking
+                    </button>
+                    <button type="button" class="btn-pay">
+                        <i class="far fa-credit-card"></i> Pay Now
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('bookingModal');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const bookingForm = document.getElementById('bookingForm');
+
+   
+        const closeModal = () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+
+ 
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+    
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("Booking Successful!");
+            bookingForm.reset();
+            closeModal();
+        });
+    </script>
+</body>
+</html>
