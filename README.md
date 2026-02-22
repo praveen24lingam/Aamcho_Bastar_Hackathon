@@ -1,111 +1,110 @@
-# ConnectHub Platform - Setup Instructions
+<div align="center">
 
-## 🚀 Quick Start Guide
+<img src="assets/logo.png" alt="Aamcho Bastar Logo" width="120" height="120" />
 
-This is a production-ready, modern web platform built with pure HTML, CSS, Vanilla JavaScript, and Supabase.
+# 🌿 Aamcho Bastar
+
+### *Connect. Explore. Experience.*
+
+**A modern community platform for tourists and residents of Bastar — connecting travelers with local agents, cultural experiences, and essential services.**
+
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com)
+
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_Site-4CAF50?style=for-the-badge)](https://yourdomain.com)
+[![License](https://img.shields.io/badge/License-Open_Source-blue?style=for-the-badge)](LICENSE)
+
+</div>
 
 ---
 
-## 📋 Prerequisites
+## 📸 Preview
 
-1. A Supabase account (free tier available at [supabase.com](https://supabase.com))
-2. A modern web browser
-3. A local web server (or use VS Code Live Server extension)
+<div align="center">
+<table>
+  <tr>
+    <td align="center"><b>🌙 Dark Mode</b></td>
+    <td align="center"><b>☀️ Light Mode</b></td>
+  </tr>
+  <tr>
+    <td><img src="assets/preview-dark.png" alt="Dark Mode Preview" width="400"/></td>
+    <td><img src="assets/preview-light.png" alt="Light Mode Preview" width="400"/></td>
+  </tr>
+</table>
+</div>
 
 ---
 
-## ⚙️ Setup Instructions
+## 📋 Table of Contents
 
-### Step 1: Create Supabase Project
+- [About](#-about)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Database Schema](#-database-schema)
+- [Authentication Model](#-authentication-model)
+- [User Roles](#-user-roles)
+- [Screenshots](#-screenshots)
+- [Roadmap](#-roadmap)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-1. Go to [supabase.com](https://supabase.com) and sign in
-2. Click "New Project"
-3. Fill in your project details:
-   - **Name**: ConnectHub (or your preferred name)
-   - **Database Password**: Choose a strong password
-   - **Region**: Select the closest region to your users
-4. Wait for your project to be created (takes ~2 minutes)
+---
 
-### Step 2: Get Your Supabase Credentials
+## 🌍 About
 
-1. In your Supabase dashboard, go to **Settings** > **API**
-2. Copy the following:
-   - **Project URL** (looks like: `https://xxxxxxxxxxxxx.supabase.co`)
-   - **Anon/Public Key** (starts with `eyJ...`)
+**Aamcho Bastar** (meaning *"Our Bastar"* in Chhattisgarhi) is a full-featured community web platform designed to bridge the gap between tourists, local residents, and service providers in the Bastar region of Chhattisgarh, India.
 
-### Step 3: Configure Authentication
+Whether you're a traveler looking to explore tribal culture, forests, and waterfalls — or a local agent offering guided tours and services — this platform provides a seamless, modern experience for both.
 
-1. **Open**: `js/auth.js`
-2. **Find** lines 7-8:
-   ```javascript
-   const SUPABASE_URL = 'YOUR_SUPABASE_URL_HERE';
-   const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';
-   ```
-3. **Replace** with your actual credentials:
-   ```javascript
-   const SUPABASE_URL = 'https://xxxxxxxxxxxxx.supabase.co';
-   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...';
-   ```
+> Built with zero backend server costs using **Supabase** — just deploy the static files and go.
 
-### Step 4: Set Up Database
+---
 
-1. In your Supabase dashboard, go to **SQL Editor**
-2. Open the file `database-schema.sql` from this project
-3. Copy all the SQL code
-4. Paste it into the Supabase SQL Editor
-5. Click **Run** to execute the SQL
-6. Verify tables are created: Go to **Table Editor** and you should see:
-   - `complaints`
-   - `feedback`
-   - `agent_requests`
-   - `profiles` (optional)
+## ✨ Features
 
-### Step 5: Enable Email Authentication
+### 🌐 Public (No Login Required)
+| Feature | Description |
+|---|---|
+| 🏞️ Explore Places | Browse tourist spots, attractions, and local listings |
+| 🎉 Festivals & Gallery | View cultural festivals and photo gallery |
+| 🚌 Transport Info | Find transport options and routes |
+| 🌓 Dark / Light Mode | Persistent theme preference |
+| 🌐 Hindi / English Toggle | Bilingual interface support |
 
-1. Go to **Authentication** > **Providers** in Supabase
-2. Make sure **Email** provider is enabled
-3. Configure email templates (optional):
-   - Go to **Authentication** > **Email Templates**
-   - Customize confirmation and password reset emails
+### 🔒 Authenticated Users
+| Feature | Description |
+|---|---|
+| 📋 Submit Complaints | Report issues and track their status |
+| 💬 Submit Feedback | Rate and review your experiences |
+| 🤝 Connect with Agents | Request and manage agent connections |
+| 📅 Trip Bookings | Plan and manage travel bookings |
+| 🔔 Notifications | Real-time activity and notification log |
+| 👤 Profile Management | Update info, change password, delete account |
 
-### Step 6: Configure Site URL
+### 🛡️ Agent & Admin
+| Feature | Description |
+|---|---|
+| 🧑‍💼 Agent Dashboard | Manage incoming requests and connections |
+| ✅ Admin Approval Flow | Server-side agent approval via Supabase RPC |
+| 🔐 Role-Based Access | RLS policies enforce data boundaries |
 
-1. Go to **Authentication** > **URL Configuration**
-2. Set your **Site URL**:
-   - For local development: `http://localhost:5500` or `http://127.0.0.1:5500`
-   - For production: Your actual domain (e.g., `https://yourdomain.com`)
-3. Add **Redirect URLs**:
-   - `http://localhost:5500/**` (for local dev)
-   - `https://yourdomain.com/**` (for production)
+---
 
-### Step 7: Run the Project
+## 🛠️ Tech Stack
 
-#### Option 1: VS Code Live Server
-1. Install "Live Server" extension in VS Code
-2. Right-click on `index.html`
-3. Select "Open with Live Server"
-
-#### Option 2: Python HTTP Server
-```bash
-# Navigate to project directory
-cd path/to/Aamcho_Bastar
-
-# Python 3
-python -m http.server 8000
-
-# Open browser to http://localhost:8000
+```
+Frontend     →  HTML5 · CSS3 · Vanilla JavaScript (ES6+)
+Backend      →  Supabase (PostgreSQL · Auth · Storage · Realtime)
+Security     →  Row-Level Security (RLS) · Email Verification · Session Tokens
+Design       →  Glass Morphism UI · CSS Variables · Mobile-First
+Fonts        →  Google Fonts (Inter)
 ```
 
-#### Option 3: Node.js HTTP Server
-```bash
-# Install http-server globally
-npm install -g http-server
-
-# Run server
-http-server -p 8000
-
-# Open browser to http://localhost:8000
-```
+**No frameworks. No build tools. No npm required for basic usage.** Just open and run.
 
 ---
 
@@ -113,230 +112,232 @@ http-server -p 8000
 
 ```
 Aamcho_Bastar/
-├── index.html              # Landing page
-├── login.html              # Login page
-├── signup.html             # Registration page
-├── dashboard.html          # User dashboard
-├── profile.html            # Profile management
-├── 404.html                # Error page
-├── database-schema.sql     # Database setup SQL
-├── README.md               # This file
+│
+├── 📄 index.html                  # Landing page
+├── 📄 login.html                  # Login page
+├── 📄 signup.html                 # Registration (User / Agent)
+├── 📄 dashboard.html              # User dashboard
+├── 📄 profile.html                # Profile management
+├── 📄 explore.html                # Places & listings
+├── 📄 festivals.html              # Cultural festivals
+├── 📄 gallery.html                # Photo gallery
+├── 📄 plan-trip.html              # Trip planner
+├── 📄 agents.html                 # Agent listings
+├── 📄 agent-dashboard.html        # Agent management portal
+├── 📄 contact.html                # Contact & support
+├── 📄 help.html                   # Help center
+├── 📄 404.html                    # Error page
+│
+├── 🗄️ database-schema.sql         # Full DB schema + RLS policies
+│
 ├── css/
-│   └── style.css          # All styles
+│   ├── style.css                  # Global styles
+│   └── landing.css                # Landing page styles
+│
 ├── js/
-│   ├── auth.js            # Authentication logic
-│   ├── dashboard.js       # Dashboard functionality
-│   ├── profile.js         # Profile management
-│   └── main.js            # General functionality
-└── assets/                # Images, icons (create as needed)
+│   ├── auth.js                    # ⚙️ Supabase config + Auth logic
+│   ├── dashboard.js               # Dashboard functionality
+│   ├── profile.js                 # Profile management
+│   ├── explore.js                 # Places & listings
+│   ├── agents.js                  # Agent listings
+│   ├── agent-dashboard.js         # Agent portal logic
+│   ├── admin-agent.js             # Admin approval flows
+│   ├── components.js              # Shared UI components
+│   └── main.js                    # Theme, language, utilities
+│
+└── assets/                        # Images, icons, media
 ```
 
 ---
 
-## 🎨 Features
+## 🚀 Getting Started
 
-### ✅ Implemented
-- **Two User Types**: Normal Users (tourists/residents) and Agents (service providers)
-- **Public Browsing**: Anyone can browse the website without logging in
-- **Authentication Required For**: Submitting complaints, feedback, connecting with agents
-- **Authentication**: Signup with user type selection, Login, Logout, Session Management
-- **Dark/Light Mode**: Toggle with persistent preference
-- **Responsive Design**: Mobile-first, works on all devices
-- **Dashboard**: Submit complaints, feedback, and agent requests
-- **Profile Management**: Update name, change password, delete account, view user type
-- **Toast Notifications**: User-friendly feedback messages
-- **Form Validation**: Real-time validation with password strength indicator
-- **Protected Routes**: Automatic redirect if not logged in
-- **Glass Morphism UI**: Modern, premium design
-- **User Type Badges**: Visual distinction between Users and Agents
+### Prerequisites
 
-### 🎯 User Types
-- **Normal Users**: Tourists or residents who can:
-  - Browse the website without login
-  - Submit complaints and feedback (requires login)
-  - Request to connect with agents (requires login)
-  - View their submissions in dashboard
-  
-- **Agents**: Service providers who can:
-  - Browse the website without login
-  - Submit complaints and feedback (requires login)
-  - View and manage their agent requests (requires login)
-  - Connected with users through the platform
+- A [Supabase](https://supabase.com) account (free tier works)
+- Any local web server (VS Code Live Server, Python, or Node.js)
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/Aamcho_Bastar.git
+cd Aamcho_Bastar
+```
+
+### 2. Create a Supabase Project
+
+1. Go to [supabase.com](https://supabase.com) → **New Project**
+2. Navigate to **Settings → API**
+3. Copy your **Project URL** and **Anon/Public Key**
+
+### 3. Configure Credentials
+
+Open `js/auth.js` and replace the placeholder values:
+
+```javascript
+// js/auth.js  →  Lines 7–8
+const SUPABASE_URL = 'https://your-project-id.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...';
+```
+
+### 4. Set Up the Database
+
+1. In Supabase, open **SQL Editor**
+2. Copy the contents of `database-schema.sql`
+3. Paste and click **Run**
+4. Verify tables in **Table Editor**:
+   - `profiles` · `complaints` · `feedback` · `agent_requests`
+   - `bookings` · `notifications` · `activity_log` · `agent_connections`
+
+### 5. Configure Authentication
+
+1. Go to **Authentication → Providers** → Enable **Email**
+2. Go to **Authentication → URL Configuration**
+   - **Site URL**: `http://localhost:5500` *(local)* or your domain *(production)*
+   - **Redirect URLs**: `http://localhost:5500/**`
+
+### 6. Run the Project
+
+<details>
+<summary><b>Option A — VS Code Live Server</b></summary>
+
+1. Install the **Live Server** extension in VS Code
+2. Right-click `index.html` → **Open with Live Server**
+
+</details>
+
+<details>
+<summary><b>Option B — Python</b></summary>
+
+```bash
+python -m http.server 8000
+# Open: http://localhost:8000
+```
+
+</details>
+
+<details>
+<summary><b>Option C — Node.js</b></summary>
+
+```bash
+npm install -g http-server
+http-server -p 8000
+# Open: http://localhost:8000
+```
+
+</details>
 
 ---
 
-## 🔐 Authentication Model (Updated)
+## 🗄️ Database Schema
 
-### Public-First Architecture
-This platform uses a **public-first** authentication model:
-- ✅ **All content is accessible without login** - Browse freely
-- 🔒 **Specific features require authentication** - Complaints, feedback, agent connections
-- 🚀 **Clean separation** - Public vs protected logic
+<details>
+<summary><b>Click to expand table definitions</b></summary>
 
-### Key Features
-1. **Public Access**
-   - Landing page fully accessible
-   - Feature browsing without account
-   - Navbar dynamically shows Login/Signup OR Dashboard/Logout
-   - Tourist places and listings viewable without login
+| Table | Key Columns |
+|---|---|
+| `profiles` | `id`, `full_name`, `user_type` (user/agent), `avatar_url`, `is_verified` |
+| `complaints` | `id`, `user_id`, `title`, `description`, `status` (pending/resolved) |
+| `feedback` | `id`, `user_id`, `message`, `rating` (1–5) |
+| `agent_requests` | `id`, `user_id`, `message`, `status` (pending/approved/rejected/completed) |
+| `agent_connections` | `id`, `user_id`, `agent_id`, `request_id`, `status` |
+| `bookings` | `id`, `user_id`, `details`, `status`, booking lifecycle fields |
+| `notifications` | `id`, `user_id`, `message`, `is_read` |
+| `activity_log` | `id`, `user_id`, `action`, `created_at` |
 
-2. **Protected Actions**
-   - Submit complaints → Login required
-   - Submit feedback → Login required
-   - Connect with agents → Login required
-   - Unauthenticated users see login modal instead
+All tables are protected with **Row-Level Security (RLS)** — users can only access their own records.
 
-3. **Protected Pages**
-   - Dashboard → Requires login
-   - Profile → Requires login
-   - Auto-redirect to login if not authenticated
+</details>
 
-### 📚 Documentation
-For detailed authentication setup and usage:
-- **[AUTH_SETUP_GUIDE.md](AUTH_SETUP_GUIDE.md)** - Complete authentication guide
-- **[AUTH_QUICK_REFERENCE.md](AUTH_QUICK_REFERENCE.md)** - Quick reference cheat sheet
+---
 
-### Common Use Cases
+## 🔐 Authentication Model
 
-#### Protect a Button/Action
+This platform uses a **Public-First** architecture:
+
+```
+┌─────────────────────────────────────────────────────┐
+│  PUBLIC (No Login Required)                          │
+│  Landing · Explore · Festivals · Gallery · Transport │
+└─────────────────────────────────────────────────────┘
+                          │
+                          ▼ (action triggered)
+┌─────────────────────────────────────────────────────┐
+│  PROTECTED (Login Modal Shown)                       │
+│  Submit Complaint · Submit Feedback · Book Trip      │
+│  Connect with Agent · Dashboard · Profile            │
+└─────────────────────────────────────────────────────┘
+```
+
+**Protecting a button is as simple as:**
 ```html
-<!-- Add data-protected-action attribute -->
 <button data-protected-action="submit complaint">Submit Complaint</button>
 ```
 
-#### Check Auth Status in JavaScript
+**Checking auth status in JavaScript:**
 ```javascript
 const { isAuthenticated, user } = await window.authFunctions.getAuthStatus();
-if (isAuthenticated) {
-    console.log('User email:', user.email);
-}
-```
-
-#### Fetch Public Data
-```javascript
-// Works without authentication
-const places = await window.utils.fetchPublicPlaces();
 ```
 
 ---
 
-## 🔐 Security Features
+## 👥 User Roles
 
-- **Row Level Security (RLS)**: Users can only access their own data
-- **Email Verification**: Supabase sends confirmation emails
-- **Password Requirements**: Minimum 8 characters
-- **Session Management**: Automatic token refresh
-- **XSS Protection**: All user input is escaped
-- **HTTPS**: Use HTTPS in production
-
----
-
-## 🏗️ Database Schema
-
-### Tables Created
-
-#### 1. **complaints**
-- `id` (UUID, Primary Key)
-- `user_id` (UUID, Foreign Key to auth.users)
-- `title` (TEXT)
-- `description` (TEXT)
-- `status` (TEXT, default: 'pending')
-- `created_at` (TIMESTAMP)
-- `updated_at` (TIMESTAMP)
-
-#### 2. **feedback**
-- `id` (UUID, Primary Key)
-- `user_id` (UUID, Foreign Key to auth.users)
-- `message` (TEXT)
-- `rating` (INTEGER, 1-5, optional)
-- `created_at` (TIMESTAMP)
-
-#### 3. **agent_requests**
-- `id` (UUID, Primary Key)
-- `user_id` (UUID, Foreign Key to auth.users)
-- `message` (TEXT)
-- `status` (TEXT: 'pending', 'approved', 'rejected', 'completed')
-- `created_at` (TIMESTAMP)
-- `updated_at` (TIMESTAMP)
-
-#### 4. **profiles** (User Information)
-- `id` (UUID, Primary Key, Foreign Key to auth.users)
-- `full_name` (TEXT)
-- `user_type` (TEXT: 'user' or 'agent')
-- `avatar_url` (TEXT)
-- `phone` (TEXT)
-- `bio` (TEXT)
-- `is_verified` (BOOLEAN)
-- `created_at` (TIMESTAMP)
-- `updated_at` (TIMESTAMP)
-
-#### 5. **agent_connections** (User-Agent Connections)
-- `id` (UUID, Primary Key)
-- `user_id` (UUID, Foreign Key to auth.users)
-- `agent_id` (UUID, Foreign Key to auth.users)
-- `request_id` (UUID, Foreign Key to agent_requests)
-- `status` (TEXT: 'active', 'completed', 'cancelled')
-- `notes` (TEXT)
-- `created_at` (TIMESTAMP)
-- `updated_at` (TIMESTAMP)
+| Role | Capabilities |
+|---|---|
+| **Guest** | Browse all public content without an account |
+| **User** | Submit complaints, feedback, book trips, connect with agents |
+| **Agent** | Manage incoming user requests, view agent dashboard |
+| **Admin** | Approve/reject agent applications via server-side RPC |
 
 ---
 
-## 🚨 Troubleshooting
+## 🗺️ Roadmap
 
-### Issue: "Failed to initialize Supabase"
-- Check that you've replaced the placeholder credentials in `js/auth.js`
-- Verify your Supabase project is active
-
-### Issue: "Invalid email or password"
-- Make sure you've created an account via the signup page
-- Check your email for verification link (if enabled)
-
-### Issue: "Failed to submit complaint/feedback"
-- Verify database tables are created correctly
-- Check browser console for detailed error messages
-- Ensure RLS policies are enabled
-
-### Issue: "CORS errors"
-- Make sure you've added your Site URL in Supabase settings
-- Use a proper web server (not `file://` protocol)
-
-### Issue: Dark mode not working
-- Clear browser cache and localStorage
-- Check browser console for errors
+- [x] Public browsing without login
+- [x] Email/password authentication
+- [x] Role-based access (User / Agent)
+- [x] Complaints, feedback, agent request flows
+- [x] Dark/light mode + Hindi/English toggle
+- [x] Admin agent approval flow
+- [ ] 📸 Avatar upload via Supabase Storage
+- [ ] 🔔 Real-time notifications via Supabase Realtime
+- [ ] 📊 Admin analytics dashboard
+- [ ] 📤 Export user data (GDPR)
+- [ ] 📧 Custom email templates
+- [ ] 🗺️ Interactive map integration
 
 ---
 
-## 🎯 Next Steps (Optional Enhancements)
+## 🐛 Troubleshooting
 
-1. **Email Templates**: Customize Supabase email templates
-2. **Avatar Upload**: Set up Supabase Storage for profile pictures
-3. **Admin Dashboard**: Create admin role for managing complaints
-4. **Agent Portal**: Separate interface for agents
-5. **Real-time Updates**: Use Supabase Realtime for live notifications
-6. **Advanced Analytics**: Add charts and statistics
-7. **Export Data**: Allow users to download their data
-8. **Multi-language Support**: Add i18n
-
----
-
-## 📱 Browser Support
-
-- ✅ Chrome (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Edge (latest)
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
+| Issue | Fix |
+|---|---|
+| `Failed to initialize Supabase` | Check credentials in `js/auth.js` |
+| `Invalid email or password` | Verify signup completed + email confirmed |
+| `Failed to submit complaint` | Ensure DB tables exist and RLS is configured |
+| `CORS errors` | Add Site URL in Supabase Auth settings; use a web server (not `file://`) |
+| `Dark mode not persisting` | Clear `localStorage` and browser cache |
 
 ---
 
-## 🛠️ Tech Stack
+## 🤝 Contributing
 
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript (ES6+)
-- **Backend**: Supabase (PostgreSQL, Auth, Storage)
-- **Design**: Custom CSS with CSS Variables
-- **Icons**: SVG inline icons
-- **Fonts**: Google Fonts (Inter)
+Contributions are welcome! Here's how:
+
+```bash
+# 1. Fork the repository
+# 2. Create a feature branch
+git checkout -b feature/your-feature-name
+
+# 3. Commit your changes
+git commit -m "feat: add your feature description"
+
+# 4. Push and open a Pull Request
+git push origin feature/your-feature-name
+```
+
+Please follow conventional commits and keep PRs focused.
 
 ---
 
@@ -346,43 +347,18 @@ This project is open source and available for personal and commercial use.
 
 ---
 
-## 🤝 Support
+## 🙏 Acknowledgements
 
-If you encounter any issues:
-1. Check the browser console for err - **No login required to browse**
-2. Browse features, testimonials, and information freely
-3. Click "Get Started" or "Sign Up" when you want to use features
-4. Select your account type:
-   - **User**: If you're a tourist or resident looking for services
-   - **Agent**: If you're a service provider helping tourists
-5. Create an account with email and password
-6. Check email for verification (if enabled)
-7. Login with your credentials
-8. Access dashboard to:
-   - Submit complaints (requires login)
-   - Submit feedback (requires login)
-   - Connect with agents (requires login)
-9. Manage your profile and view your user type
-10. Toggle between dark and light modes
-
-**Key Points:**
-- ✅ Browsing = No login required
-- 🔒 Submitting complaints/feedback = Login required
-- 🔒 Connecting with agents = Login required
-- 🔒 Dashboard access = Login required
-## 🎉 Congratulations!
-
-Your ConnectHub platform is now ready to use. Visit `index.html` in your browser to get started.
-
-**Default Flow:**
-1. Visit landing page (`index.html`)
-2. Click "Get Started" or "Sign Up"
-3. Create an account with email and password
-4. Check email for verification (if enabled)
-5. Login with your credentials
-6. Access dashboard to submit complaints, feedback, or agent requests
-7. Manage your profile and change settings
+- [Supabase](https://supabase.com) — for the incredible open-source backend
+- [Google Fonts](https://fonts.google.com) — for the Inter typeface
+- The people and culture of **Bastar, Chhattisgarh** — for the inspiration 🌿
 
 ---
 
-**Built with ❤️ using Pure HTML, CSS, Vanilla JavaScript & Supabase**
+<div align="center">
+
+**Built with ❤️ for Bastar**
+
+⭐ If you found this project useful, please consider giving it a star!
+
+</div>
