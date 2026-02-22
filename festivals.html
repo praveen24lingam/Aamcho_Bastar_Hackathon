@@ -6,8 +6,9 @@
     <title>Festivals - Chalgunbe Bastar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-   
+    
     <style>
+        /* Base Styles */
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
@@ -16,7 +17,7 @@
             line-height: 1.6;
         }
 
-
+        /* Navbar Styling */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -35,7 +36,7 @@
         }
         .text-green { color: #2e7d32; }
         .text-orange { color: #e87c35; }
-       
+        
         .nav-links {
             list-style: none;
             display: flex;
@@ -60,7 +61,7 @@
             background-color: #fff0e6;
             color: #e87c35;
         }
-       
+        
         .nav-actions {
             display: flex;
             align-items: center;
@@ -82,7 +83,7 @@
             border-radius: 6px;
         }
 
-
+        /* Hero Section */
         .festivals-hero {
             background: linear-gradient(90deg, #d2e0d5 0%, #f9f1eb 50%, #f6e3d5 100%);
             padding: 60px 20px;
@@ -100,13 +101,14 @@
             margin: 0;
         }
 
-
+        /* Main Content Container */
         .festivals-container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 50px 20px;
         }
-       
+        
+        /* Header Title */
         .festivals-header {
             text-align: center;
             margin-bottom: 40px;
@@ -129,7 +131,7 @@
             margin: 0 auto;
         }
 
-
+        /* Grid Layout */
         .festivals-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -137,7 +139,7 @@
             margin-bottom: 50px;
         }
 
-
+        /* Card Styling */
         .festival-card {
             background: #fff;
             border-radius: 12px;
@@ -153,7 +155,7 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
-
+        /* Card Image Area */
         .card-image {
             height: 200px;
             background-size: cover;
@@ -180,12 +182,12 @@
             font-size: 0.75rem;
             font-weight: 600;
         }
+        /* Badge Colors */
         .bg-orange { background-color: #e87c35; }
         .bg-green { background-color: #2e7d32; }
         .bg-dark-green { background-color: #1b5e20; }
         .bg-blue-grey { background-color: #546e7a; }
         .bg-dark { background-color: #212121; }
-
 
         .card-title-overlay {
             position: absolute;
@@ -206,7 +208,7 @@
             color: #ddd;
         }
 
-
+        /* Card Body */
         .card-body {
             padding: 20px;
             flex-grow: 1;
@@ -233,7 +235,7 @@
             line-height: 1.5;
         }
 
-
+        /* Highlights */
         .highlights-label {
             font-size: 0.85rem;
             font-weight: 600;
@@ -261,7 +263,7 @@
             background-color: #a67c52;
         }
 
-
+        /* Card Actions (MODIFIED TO SUPPORT <a> TAGS) */
         .card-actions {
             margin-top: auto;
             display: flex;
@@ -282,6 +284,8 @@
             justify-content: center;
             align-items: center;
             gap: 8px;
+            text-decoration: none; /* Prevents underline on links */
+            box-sizing: border-box;
         }
         .btn-outline:hover {
             border-color: #8a6347;
@@ -301,6 +305,8 @@
             justify-content: center;
             align-items: center;
             gap: 8px;
+            text-decoration: none; /* Prevents underline on links */
+            box-sizing: border-box;
         }
         .btn-solid-orange:hover {
             background-color: #d66a25;
@@ -319,60 +325,14 @@
             justify-content: center;
             align-items: center;
             gap: 8px;
+            text-decoration: none; /* Prevents underline on links */
+            box-sizing: border-box;
         }
         .btn-solid-brown:hover {
             background-color: #714e36;
         }
 
-
-        .cta-section {
-            background-color: #fff9f5;
-            border: 1px solid #f2ebe4;
-            border-radius: 12px;
-            padding: 40px;
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .cta-section h3 {
-            font-size: 1.5rem;
-            color: #222;
-            margin: 0 0 10px 0;
-        }
-        .cta-section p {
-            color: #666;
-            margin: 0 0 25px 0;
-            font-size: 0.95rem;
-        }
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        .cta-btn-primary {
-            background-color: #e87c35;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .cta-btn-primary:hover { background-color: #d66a25; }
-        .cta-btn-secondary {
-            background-color: #fff;
-            color: #444;
-            border: 1px solid #ccc;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .cta-btn-secondary:hover { border-color: #888; color: #222; }
-
-
+        /* Footer Basic Styling */
         .site-footer {
             background-color: #222;
             color: #fff;
@@ -390,12 +350,11 @@
         .site-footer p { margin: 5px 0; color: #aaa; }
         .site-footer .copyright { font-size: 0.85rem; margin-top: 15px; }
 
-
+        /* Responsive */
         @media (max-width: 768px) {
             .navbar { padding: 15px 20px; }
             .nav-links, .nav-actions { display: none; }
             .festivals-grid { grid-template-columns: 1fr; }
-            .cta-buttons { flex-direction: column; }
         }
     </style>
 </head>
@@ -421,13 +380,11 @@
         </div>
     </nav>
 
-
     <main>
         <section class="festivals-hero">
             <h1 class="translatable" data-en="Bastar Festivals" data-hi="बस्तर के त्योहार">Bastar Festivals</h1>
             <p class="translatable" data-en="Experience the vibrant culture and traditions of tribal Bastar" data-hi="आदिवासी बस्तर की जीवंत संस्कृति और परंपराओं का अनुभव करें">Experience the vibrant culture and traditions of tribal Bastar</p>
         </section>
-
 
         <section class="festivals-container">
             <div class="festivals-header">
@@ -436,9 +393,8 @@
                 <p class="translatable" data-en="Immerse yourself in the vibrant cultural celebrations that define the spirit of Bastar. From ancient tribal rituals to modern cultural festivals, experience the soul of Chhattisgarh." data-hi="बस्तर की भावना को परिभाषित करने वाले जीवंत सांस्कृतिक समारोहों में डूब जाएं। प्राचीन आदिवासी अनुष्ठानों से लेकर आधुनिक सांस्कृतिक त्योहारों तक, छत्तीसगढ़ की आत्मा का अनुभव करें।">Immerse yourself in the vibrant cultural celebrations that define the spirit of Bastar. From ancient tribal rituals to modern cultural festivals, experience the soul of Chhattisgarh.</p>
             </div>
 
-
             <div class="festivals-grid">
-               
+                
                 <div class="festival-card">
                     <div class="card-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbFIEM3Zld7LehCeQRWbNTvAp4L_MzW4yw-A&s');">
                         <span class="badge-left bg-orange translatable" data-en="Major Festival" data-hi="प्रमुख त्योहार">Major Festival</span>
@@ -453,7 +409,7 @@
                         <div class="info-row"><i class="fas fa-map-marker-alt"></i> <span class="translatable" data-en="Jagdalpur" data-hi="जगदलपुर">Jagdalpur</span></div>
                         <div class="info-row"><i class="fas fa-user-friends"></i> <span class="translatable" data-en="₹499/person" data-hi="₹499/व्यक्ति">₹499/person</span></div>
                         <p class="card-desc translatable" data-en="World's longest Dussehra celebration with unique tribal traditions" data-hi="अद्वितीय आदिवासी परंपराओं के साथ दुनिया का सबसे लंबा दशहरा उत्सव">World's longest Dussehra celebration with unique tribal traditions</p>
-                       
+                        
                         <div class="highlights-label"><i class="fas fa-music"></i> <span class="translatable" data-en="Highlights" data-hi="मुख्य आकर्षण">Highlights</span></div>
                         <div class="tags-container">
                             <span class="tag translatable" data-en="Tribal rituals" data-hi="आदिवासी अनुष्ठान">Tribal rituals</span>
@@ -461,14 +417,13 @@
                             <span class="tag translatable" data-en="Royal processions" data-hi="शाही जुलूस">Royal processions</span>
                             <span class="tag tag-more translatable" data-en="+1 more" data-hi="+1 और">+1 more</span>
                         </div>
-                       
+                        
                         <div class="card-actions">
-                            <button class="btn-outline translatable" data-en="View Details" data-hi="विवरण देखें"><i class="far fa-eye"></i> View Details</button>
-                            <button class="btn-solid-orange translatable" data-en="Register to Join" data-hi="शामिल होने के लिए पंजीकरण करें"><i class="fas fa-user-plus"></i> Register to Join</button>
+                            <a href="festival-details.html" class="btn-outline translatable" data-en="View Details" data-hi="विवरण देखें"><i class="far fa-eye"></i> View Details</a>
+                            <a href="contact.html" class="btn-solid-orange translatable" data-en="Register to Join" data-hi="शामिल होने के लिए पंजीकरण करें"><i class="fas fa-user-plus"></i> Register to Join</a>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="festival-card">
                     <div class="card-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUEHQ5v_2MHGpCRlVazrxgTVuSZepE51uCNA&s');">
@@ -484,7 +439,7 @@
                         <div class="info-row"><i class="fas fa-map-marker-alt"></i> <span class="translatable" data-en="Various Villages" data-hi="विभिन्न गांव">Various Villages</span></div>
                         <div class="info-row"><i class="fas fa-user-friends"></i> <span class="translatable" data-en="₹299/person" data-hi="₹299/व्यक्ति">₹299/person</span></div>
                         <p class="card-desc translatable" data-en="Traditional tribal fair celebrating harvest and community bonding" data-hi="फसल और सामुदायिक बंधन का जश्न मनाने वाला पारंपरिक आदिवासी मेला">Traditional tribal fair celebrating harvest and community bonding</p>
-                       
+                        
                         <div class="highlights-label"><i class="fas fa-music"></i> <span class="translatable" data-en="Highlights" data-hi="मुख्य आकर्षण">Highlights</span></div>
                         <div class="tags-container">
                             <span class="tag translatable" data-en="Local crafts" data-hi="स्थानीय शिल्प">Local crafts</span>
@@ -492,14 +447,13 @@
                             <span class="tag translatable" data-en="Folk music" data-hi="लोक संगीत">Folk music</span>
                             <span class="tag tag-more translatable" data-en="+1 more" data-hi="+1 और">+1 more</span>
                         </div>
-                       
+                        
                         <div class="card-actions">
-                            <button class="btn-outline translatable" data-en="View Details" data-hi="विवरण देखें"><i class="far fa-eye"></i> View Details</button>
-                            <button class="btn-solid-brown translatable" data-en="Notify When Open" data-hi="खुलने पर सूचित करें"><i class="far fa-bell"></i> Notify When Open</button>
+                            <a href="festival-details.html" class="btn-outline translatable" data-en="View Details" data-hi="विवरण देखें"><i class="far fa-eye"></i> View Details</a>
+                            <a href="contact.html" class="btn-solid-brown translatable" data-en="Notify When Open" data-hi="खुलने पर सूचित करें"><i class="far fa-bell"></i> Notify When Open</a>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="festival-card">
                     <div class="card-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBBBncl2zzcehv3kYzlS4J4FRWQO8nYcxU9g&s');">
@@ -515,7 +469,7 @@
                         <div class="info-row"><i class="fas fa-map-marker-alt"></i> <span class="translatable" data-en="Gond Villages" data-hi="गोंड गांव">Gond Villages</span></div>
                         <div class="info-row"><i class="fas fa-user-friends"></i> <span class="translatable" data-en="₹199/person" data-hi="₹199/व्यक्ति">₹199/person</span></div>
                         <p class="card-desc translatable" data-en="Harvest festival of Gond tribe with traditional rituals" data-hi="पारंपरिक अनुष्ठानों के साथ गोंड जनजाति का फसल उत्सव">Harvest festival of Gond tribe with traditional rituals</p>
-                       
+                        
                         <div class="highlights-label"><i class="fas fa-music"></i> <span class="translatable" data-en="Highlights" data-hi="मुख्य आकर्षण">Highlights</span></div>
                         <div class="tags-container">
                             <span class="tag translatable" data-en="Harvest celebration" data-hi="फसल उत्सव">Harvest celebration</span>
@@ -523,14 +477,13 @@
                             <span class="tag translatable" data-en="Sacred rituals" data-hi="पवित्र अनुष्ठान">Sacred rituals</span>
                             <span class="tag tag-more translatable" data-en="+1 more" data-hi="+1 और">+1 more</span>
                         </div>
-                       
+                        
                         <div class="card-actions">
-                            <button class="btn-outline translatable" data-en="View Details" data-hi="विवरण देखें"><i class="far fa-eye"></i> View Details</button>
-                            <button class="btn-solid-brown translatable" data-en="Notify When Open" data-hi="खुलने पर सूचित करें"><i class="far fa-bell"></i> Notify When Open</button>
+                            <a href="festival-details.html" class="btn-outline translatable" data-en="View Details" data-hi="विवरण देखें"><i class="far fa-eye"></i> View Details</a>
+                            <a href="contact.html" class="btn-solid-brown translatable" data-en="Notify When Open" data-hi="खुलने पर सूचित करें"><i class="far fa-bell"></i> Notify When Open</a>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="festival-card">
                     <div class="card-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwlzYIaPg_MKbSQRZKeX8idatq4to7gXIYJw&s');">
@@ -546,7 +499,7 @@
                         <div class="info-row"><i class="fas fa-map-marker-alt"></i> <span class="translatable" data-en="Dantewada" data-hi="दंतेवाड़ा">Dantewada</span></div>
                         <div class="info-row"><i class="fas fa-user-friends"></i> <span class="translatable" data-en="₹200/person" data-hi="₹200/व्यक्ति">₹200/person</span></div>
                         <p class="card-desc translatable" data-en="Spring festival celebrating love, life, and tribal unity" data-hi="प्रेम, जीवन और आदिवासी एकता का जश्न मनाने वाला वसंत उत्सव">Spring festival celebrating love, life, and tribal unity</p>
-                       
+                        
                         <div class="highlights-label"><i class="fas fa-music"></i> <span class="translatable" data-en="Highlights" data-hi="मुख्य आकर्षण">Highlights</span></div>
                         <div class="tags-container">
                             <span class="tag translatable" data-en="Spring celebration" data-hi="वसंत उत्सव">Spring celebration</span>
@@ -554,14 +507,13 @@
                             <span class="tag translatable" data-en="Traditional games" data-hi="पारंपरिक खेल">Traditional games</span>
                             <span class="tag tag-more translatable" data-en="+1 more" data-hi="+1 और">+1 more</span>
                         </div>
-                       
+                        
                         <div class="card-actions">
-                            <button class="btn-outline translatable" data-en="View Details" data-hi="विवरण देखें"><i class="far fa-eye"></i> View Details</button>
-                            <button class="btn-solid-orange translatable" data-en="Register to Join" data-hi="शामिल होने के लिए पंजीकरण करें"><i class="fas fa-user-plus"></i> Register to Join</button>
+                            <a href="festival-details.html" class="btn-outline translatable" data-en="View Details" data-hi="विवरण देखें"><i class="far fa-eye"></i> View Details</a>
+                            <a href="contact.html" class="btn-solid-orange translatable" data-en="Register to Join" data-hi="शामिल होने के लिए पंजीकरण करें"><i class="fas fa-user-plus"></i> Register to Join</a>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="festival-card">
                     <div class="card-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM5BtRQySqVKN8sUaGkiAuaQcbTKL-te5x_g&s');">
@@ -577,7 +529,7 @@
                         <div class="info-row"><i class="fas fa-map-marker-alt"></i> <span class="translatable" data-en="Narayanpur" data-hi="नारायणपुर">Narayanpur</span></div>
                         <div class="info-row"><i class="fas fa-user-friends"></i> <span class="translatable" data-en="₹450/person" data-hi="₹450/व्यक्ति">₹450/person</span></div>
                         <p class="card-desc translatable" data-en="Cultural extravaganza showcasing tribal art, music, and dance" data-hi="आदिवासी कला, संगीत और नृत्य का प्रदर्शन करने वाला सांस्कृतिक उत्सव">Cultural extravaganza showcasing tribal art, music, and dance</p>
-                       
+                        
                         <div class="highlights-label"><i class="fas fa-music"></i> <span class="translatable" data-en="Highlights" data-hi="मुख्य आकर्षण">Highlights</span></div>
                         <div class="tags-container">
                             <span class="tag translatable" data-en="Art exhibitions" data-hi="कला प्रदर्शनी">Art exhibitions</span>
@@ -585,14 +537,13 @@
                             <span class="tag translatable" data-en="Dance performances" data-hi="नृत्य प्रदर्शन">Dance performances</span>
                             <span class="tag tag-more translatable" data-en="+1 more" data-hi="+1 और">+1 more</span>
                         </div>
-                       
+                        
                         <div class="card-actions">
-                            <button class="btn-outline translatable" data-en="View Details" data-hi="विवरण देखें"><i class="far fa-eye"></i> View Details</button>
-                            <button class="btn-solid-orange translatable" data-en="Register to Join" data-hi="शामिल होने के लिए पंजीकरण करें"><i class="fas fa-user-plus"></i> Register to Join</button>
+                            <a href="festival-details.html" class="btn-outline translatable" data-en="View Details" data-hi="विवरण देखें"><i class="far fa-eye"></i> View Details</a>
+                            <a href="contact.html" class="btn-solid-orange translatable" data-en="Register to Join" data-hi="शामिल होने के लिए पंजीकरण करें"><i class="fas fa-user-plus"></i> Register to Join</a>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="festival-card">
                     <div class="card-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRayQdnhlJRV0exJvfcSNy3nEHSDwWPMEuTpg&s');">
@@ -608,7 +559,7 @@
                         <div class="info-row"><i class="fas fa-map-marker-alt"></i> <span class="translatable" data-en="Raigarh" data-hi="रायगढ़">Raigarh</span></div>
                         <div class="info-row"><i class="fas fa-user-friends"></i> <span class="translatable" data-en="₹750/person" data-hi="₹750/व्यक्ति">₹750/person</span></div>
                         <p class="card-desc translatable" data-en="Classical music and dance festival honoring cultural heritage" data-hi="सांस्कृतिक विरासत का सम्मान करने वाला शास्त्रीय संगीत और नृत्य समारोह">Classical music and dance festival honoring cultural heritage</p>
-                       
+                        
                         <div class="highlights-label"><i class="fas fa-music"></i> <span class="translatable" data-en="Highlights" data-hi="मुख्य आकर्षण">Highlights</span></div>
                         <div class="tags-container">
                             <span class="tag translatable" data-en="Classical performances" data-hi="शास्त्रीय प्रदर्शन">Classical performances</span>
@@ -616,38 +567,23 @@
                             <span class="tag translatable" data-en="Cultural workshops" data-hi="सांस्कृतिक कार्यशालाएं">Cultural workshops</span>
                             <span class="tag tag-more translatable" data-en="+1 more" data-hi="+1 और">+1 more</span>
                         </div>
-                       
+                        
                         <div class="card-actions">
-                            <button class="btn-outline translatable" data-en="View Details" data-hi="विवरण देखें"><i class="far fa-eye"></i> View Details</button>
-                            <button class="btn-solid-brown translatable" data-en="Notify When Open" data-hi="खुलने पर सूचित करें"><i class="far fa-bell"></i> Notify When Open</button>
+                            <a href="festival-details.html" class="btn-outline translatable" data-en="View Details" data-hi="विवरण देखें"><i class="far fa-eye"></i> View Details</a>
+                            <a href="contact.html" class="btn-solid-brown translatable" data-en="Notify When Open" data-hi="खुलने पर सूचित करें"><i class="far fa-bell"></i> Notify When Open</a>
                         </div>
                     </div>
                 </div>
 
-
             </div>
-
-
-            <div class="cta-section">
-                <h3 class="translatable" data-en="Don't Miss Any Celebration" data-hi="कोई भी उत्सव न चूकें">Don't Miss Any Celebration</h3>
-                <p class="translatable" data-en="Subscribe to our festival calendar and get notified about upcoming cultural events." data-hi="हमारे त्योहार कैलेंडर की सदस्यता लें और आगामी सांस्कृतिक कार्यक्रमों के बारे में सूचना प्राप्त करें।">Subscribe to our festival calendar and get notified about upcoming cultural events.</p>
-                <div class="cta-buttons">
-                    <button class="cta-btn-primary translatable" data-en="Subscribe to Calendar" data-hi="कैलेंडर की सदस्यता लें">Subscribe to Calendar</button>
-                    <button class="cta-btn-secondary translatable" data-en="Download Festival Guide" data-hi="त्योहार गाइड डाउनलोड करें">Download Festival Guide</button>
-                </div>
-            </div>
-
-
         </section>
     </main>
-
 
     <footer class="site-footer">
         <div class="footer-logo"><span class="text-white">Ch</span><span class="text-orange">लगुंबे बस्तर</span></div>
         <p class="translatable" data-en="Feel Bastar, Explore Beyond" data-hi="बस्तर को महसूस करें, आगे अन्वेषण करें">Feel Bastar, Explore Beyond</p>
         <p class="copyright">© 2024 ChalgunbeBastar.com</p>
     </footer>
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -656,15 +592,14 @@
             const langTextSpan = document.getElementById('lang-text');
             const translatableElements = document.querySelectorAll('.translatable');
 
-
             if(langToggleBtn) {
-                langToggleBtn.addEventListener('click', function() {
+                langToggleBtn.addEventListener('click', function(e) {
                     // Toggle language state
                     currentLang = currentLang === 'en' ? 'hi' : 'en';
-                   
+                    
                     // Update Button Text
                     langTextSpan.innerText = currentLang === 'en' ? 'हिंदी' : 'English';
-                   
+                    
                     // Update all text content based on the data attributes
                     translatableElements.forEach(el => {
                         const newText = el.getAttribute(`data-${currentLang}`);
@@ -684,4 +619,3 @@
     </script>
 </body>
 </html>
-
